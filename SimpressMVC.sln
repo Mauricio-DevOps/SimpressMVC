@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32602.291
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpressMVC.Application", "SimpressMVC.Application\SimpressMVC.Application.csproj", "{0B45BCAA-9835-4F83-A5DE-FBBA12E84DF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpressMVC.Domain", "SimpressMVC.Domain\SimpressMVC.Domain.csproj", "{285E8449-C849-4E7C-A1A4-C9781D9A3815}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpressMVC.Infra.Ioc", "SimpressMVC.Infra.Ioc\SimpressMVC.Infra.Ioc.csproj", "{CF0E42D6-695D-4A08-97DF-5031F08EDCE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpressMVC.WebUI", "SimpressMVC.WebUI\SimpressMVC.WebUI.csproj", "{FEACA9E0-A6C3-4468-8583-36327F6D6A8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpressMVC.Domain.Tests", "SimpressMVC.Domain.Tests\SimpressMVC.Domain.Tests.csproj", "{988C523F-C7E7-4581-A8EE-F08335A22AC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpressMVC.Infra.Data", "SimpressMVC.Infra.Data\SimpressMVC.Infra.Data.csproj", "{B881AAE4-2E01-46AF-A0FC-1B66204B69B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B45BCAA-9835-4F83-A5DE-FBBA12E84DF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B45BCAA-9835-4F83-A5DE-FBBA12E84DF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B45BCAA-9835-4F83-A5DE-FBBA12E84DF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B45BCAA-9835-4F83-A5DE-FBBA12E84DF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{285E8449-C849-4E7C-A1A4-C9781D9A3815}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{285E8449-C849-4E7C-A1A4-C9781D9A3815}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{285E8449-C849-4E7C-A1A4-C9781D9A3815}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{285E8449-C849-4E7C-A1A4-C9781D9A3815}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF0E42D6-695D-4A08-97DF-5031F08EDCE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF0E42D6-695D-4A08-97DF-5031F08EDCE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF0E42D6-695D-4A08-97DF-5031F08EDCE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF0E42D6-695D-4A08-97DF-5031F08EDCE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEACA9E0-A6C3-4468-8583-36327F6D6A8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEACA9E0-A6C3-4468-8583-36327F6D6A8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEACA9E0-A6C3-4468-8583-36327F6D6A8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEACA9E0-A6C3-4468-8583-36327F6D6A8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{988C523F-C7E7-4581-A8EE-F08335A22AC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{988C523F-C7E7-4581-A8EE-F08335A22AC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{988C523F-C7E7-4581-A8EE-F08335A22AC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{988C523F-C7E7-4581-A8EE-F08335A22AC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B881AAE4-2E01-46AF-A0FC-1B66204B69B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B881AAE4-2E01-46AF-A0FC-1B66204B69B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B881AAE4-2E01-46AF-A0FC-1B66204B69B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B881AAE4-2E01-46AF-A0FC-1B66204B69B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CCB5B67C-6891-4D9B-BA8E-CDACD8674DB3}
+	EndGlobalSection
+EndGlobal

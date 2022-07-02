@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SimpressMVC.Application\SimpressMVC.Application.csproj" />
+    <ProjectReference Include="..\SimpressMVC.Domain\SimpressMVC.Domain.csproj" />
+    <ProjectReference Include="..\SimpressMVC.Infra.Data\SimpressMVC.Infra.Data.csproj" />
+  </ItemGroup>
+
+</Project>
