@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SimpressMVC.Application.DTOs.ProdutoDTO>
+﻿@model IEnumerable<SimpressMVC.WebUI.Models.Response.ProdutoResponse>
 
 <style>
     .modal-lg {
@@ -11,6 +11,12 @@
 <hr />
 
 <form asp-action="Create">
+    @if (SimpressMVC.WebUI.Controllers.ProdutoController.Erro)
+    {
+        <div class="alert alert-danger" role="alert">
+            Todos os Campos são obrigatorios !!!
+        </div>
+    }
     <div class="form-group">
         <label for="Nome">Nome</label>
         <input type="text" class="form-control" id="Nome" name="Nome">
