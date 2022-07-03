@@ -3,20 +3,20 @@ using SimpressMVC.WebUI.Models.Response;
 
 namespace SimpressMVC.WebUI.Models.Validator
 {
-    public class CreateProdutoResponse : AbstractValidator<ProdutoResponse>
+    public class CreateProdutoValidator : AbstractValidator<ProdutoResponse>
     {
-        public CreateProdutoResponse()
+        public CreateProdutoValidator()
         {
             RuleFor(x => x.Nome)
                 .NotNull().WithMessage("Nome e obrigatorio");
             RuleFor(x => x.Descricao)
-                .NotNull().WithMessage("Nome e obrigatorio");
+                .NotNull().WithMessage("Descricao e obrigatorio");
             RuleFor(x => x.CategoriaId)
-                .NotNull().WithMessage("Nome e obrigatorio");
+                .NotNull().WithMessage("Id da Categoria e obrigatorio");
             RuleFor(x => x.Ativo)
-                .NotNull().WithMessage("Nome e obrigatorio");
+                .NotNull().WithMessage("Ativo e obrigatorio");
             RuleFor(x => x.Perecivel)
-                .NotNull().WithMessage("Nome e obrigatorio");
+                .NotNull().WithMessage("Perecivel e obrigatorio");
         }
     }
 }

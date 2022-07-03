@@ -1,5 +1,4 @@
-﻿@model SimpressMVC.Application.DTOs.ProdutoDTO
-
+﻿@model SimpressMVC.WebUI.Models.Response.ProdutoResponse
 <style>
     .modal-lg {
         max-width: 80%;
@@ -20,7 +19,7 @@
         <input type="text" class="form-control" id="Descricao" name="Descricao" value="@Model.Descricao">
     </div>
     <div class="form-group">
-        <select for="Categoria" class="form-control" asp-items="ViewBag.CategoryId" name="CategoriaId" ></select>
+        <select asp-for="CategoriaId" class="form-control" asp-items="ViewBag.CategoryId"></select>
     </div>
     <div class="form-group">
         <input type="checkbox" class="form-check-input" id="Perecivel" name="Perecivel">

@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using SimpressMVC.Application.DTOs;
 using SimpressMVC.Application.Interfaces;
 using SimpressMVC.WebUI.API;
 using SimpressMVC.WebUI.Models.Response;
+using SimpressMVC.WebUI.Models.Validator;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -22,7 +23,7 @@ namespace SimpressMVC.WebUI.Controllers
             _produtoService = produtoService;
             _categoriaService = categoriaService;
         }
-        public static bool Erro=false;
+        public static bool Erro = false;
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -31,22 +32,23 @@ namespace SimpressMVC.WebUI.Controllers
             ViewBag.CategoryId = new SelectList(categoria, "Id", "Nome");
             return View(produto);
         }
-
+        public static ValidationResult result;
         [HttpPost]
         public async Task<IActionResult> Create(ProdutoResponse productDTO)
         {
             productDTO.Ativo = true;
             productDTO.Perecivel = true;
 
-            if(productDTO.Nome!=null && productDTO.Descricao != null && productDTO.CategoriaId != null)
+            CreateProdutoValidator validator = new CreateProdutoValidator();
+            result = validator.Validate(productDTO);
+
+            if (!result.IsValid)
             {
                 var resposta = ExecutaApi.ConsultaVerboPost<ProdutoResponse>("https://localhost:44320/api/Produto", productDTO);
-                Erro = false;
-            }
-            else
-            {
                 Erro = true;
             }
+            else { Erro = false; }
+            ViewBag.ReturErro = result.Errors[0];
 
             return RedirectToAction("Index", "Produto");
         }
@@ -58,12 +60,12 @@ namespace SimpressMVC.WebUI.Controllers
             var produtoDTO = ExecutaApi.ConsultaVerboGet<ProdutoResponse>("https://localhost:44320/api/Produto/" + Id);
             if (produtoDTO == null) return NotFound();
             var categorias = ExecutaApi.ConsultaVerboGet<IEnumerable<CategoriaResponse>>("https://localhost:44320/api/Categoria");
-            ViewBag.CategoryId = new SelectList(categorias, "Id", "Nome");
-            ViewBag.Id = produtoDTO.CategoriaId;
+            ViewBag.CategoryId = new SelectList(categorias, "Id", "Nome", produtoDTO.CategoriaId);
+            //ViewBag.Id = produtoDTO.CategoriaId;
             return View(produtoDTO);
         }
 
-        [HttpPost]
+        [HttpPost()]
         public async Task<IActionResult> Update(ProdutoResponse productDTO)
         {
             var resposta = ExecutaApi.ConsultaVerboPut<ProdutoResponse>("https://localhost:44320/api/Produto", productDTO);

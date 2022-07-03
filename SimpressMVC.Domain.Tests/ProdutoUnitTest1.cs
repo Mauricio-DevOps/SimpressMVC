@@ -10,7 +10,7 @@ namespace SimpressMVC.Domain.Tests
         [Fact]
         public void CreateProduto_ParametrosValidos_RetornoObjetoValido()
         {
-            Action action = () => new Produto(1,"Nome Produto", "Descrição Produto", true);
+            Action action = () => new Produto(1, "Nome Produto", "Descrição Produto", true);
             action.Should()
                 .NotThrow<SimpressMVC.Domain.Validation.DomainExceptionValidation>();
         }

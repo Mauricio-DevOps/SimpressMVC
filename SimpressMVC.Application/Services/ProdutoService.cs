@@ -12,11 +12,13 @@ namespace SimpressMVC.Application.Services
     public class ProdutoService : IProdutoService
     {
         private IProdutoRepository _produtoRepository;
+        private ICategoriaProdutoRepository _categoriaRepository;
         private readonly IMapper _mapper;
-        public ProdutoService(IProdutoRepository produtoRepository, IMapper mapper)
+        public ProdutoService(IProdutoRepository produtoRepository, IMapper mapper, ICategoriaProdutoRepository categoriaProdutoRepository)
         {
             _produtoRepository = produtoRepository ??
                 throw new ArgumentNullException(nameof(produtoRepository));
+            _categoriaRepository = categoriaProdutoRepository;
             _mapper = mapper;
         }
 
@@ -29,6 +31,7 @@ namespace SimpressMVC.Application.Services
         public async Task<ProdutoDTO> GetByIdAsync(int? id)
         {
             var produtoEntity = await _produtoRepository.GetByIdAsync(id);
+            produtoEntity.Categoria = await _categoriaRepository.GetByIdAsync(produtoEntity.CategoriaID);
             return _mapper.Map<ProdutoDTO>(produtoEntity);
         }
 

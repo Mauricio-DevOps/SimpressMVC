@@ -10,7 +10,7 @@ namespace SimpressMVC.WebUI.Models.Validator
             RuleFor(x => x.Nome)
                 .NotNull().WithMessage("Nome e obrigatorio");
             RuleFor(x => x.Descricao)
-                .NotNull().WithMessage("Nome e obrigatorio");
+                .NotNull().WithMessage("Descrição e obrigatorio");
         }
     }
 }
