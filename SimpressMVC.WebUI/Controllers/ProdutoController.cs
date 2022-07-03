@@ -41,5 +41,37 @@ namespace SimpressMVC.WebUI.Controllers
             await _produtoService.AddAsync(productDTO);
             return RedirectToAction("Index","Produto");
         }
+
+        [HttpGet()]
+        public async Task<IActionResult> Edit(int Id)
+        {
+            if (Id == null) return NotFound();
+            var produtoDTO = await _produtoService.GetByIdAsync(Id);
+
+            if (produtoDTO == null) return NotFound();
+
+            var categorias = await _categoriaService.GetCategoriaAsync();
+
+            ViewBag.CategoryId = new SelectList(await _categoriaService.GetCategoriaAsync(), "Id", "Nome");
+            ViewBag.Id = produtoDTO.CategoriaId;
+            //ViewBag.CategoriaId = new SelectList(categorias, "Id", "Name", produtoDTO.CategoriaId);
+
+            return View(produtoDTO);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(ProdutoDTO productDTO)
+        {
+            await _produtoService.UpdateAsync(productDTO);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet()]
+        public async Task<IActionResult> Delete(int Id)
+        {
+            await _produtoService.RemoveAsync(Id);
+
+            return RedirectToAction("Index", "Produto");
+        }
     }
 }

@@ -1,0 +1,33 @@
+﻿@model SimpressMVC.Application.DTOs.ProdutoDTO
+
+<style>
+    .modal-lg {
+        max-width: 80%;
+    }
+</style>
+<div>
+    <h2>@ViewData["Title"]</h2>
+</div>
+<hr />
+
+<form asp-action="Update">
+    <div class="form-group">
+        <label for="Nome">Nome</label>
+        <input type="text" class="form-control" id="Nome" name="Nome" value="@Model.Nome">
+    </div>
+    <div class="form-group">
+        <label for="Descricao">Descriçao</label>
+        <input type="text" class="form-control" id="Descricao" name="Descricao" value="@Model.Descricao">
+    </div>
+    <div class="form-group">
+        <select for="Categoria" class="form-control" asp-items="ViewBag.CategoryId" name="CategoriaId" ></select>
+    </div>
+    <div class="form-group">
+        <input type="checkbox" class="form-check-input" id="Perecivel" name="Perecivel">
+        <label class="form-check-label" for="Perecivel">Perecivel?</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+</form>
+<div class="row">
+</div>
+<br />
