@@ -4,6 +4,9 @@ using SimpressMVC.Application.DTOs;
 using SimpressMVC.Application.Interfaces;
 using SimpressMVC.WebUI.Models;
 using System.Threading.Tasks;
+using SimpressMVC.WebUI.API;
+using System.Collections.Generic;
+using SimpressMVC.WebUI.API.Response;
 
 namespace SimpressMVC.WebUI.Controllers
 {
@@ -12,9 +15,13 @@ namespace SimpressMVC.WebUI.Controllers
         private readonly IProdutoService _produtoService;
         private readonly ICategoriaService _categoriaService;
 
-        MyViewModel myViewModel = new MyViewModel();
 
-        public ProdutoController(IProdutoService produtoService, ICategoriaService categoriaService)
+
+        //MyViewModel myViewModel = new MyViewModel();
+
+        public ProdutoController(
+            IProdutoService produtoService, ICategoriaService categoriaService
+            )
         {
             _produtoService = produtoService;
             _categoriaService = categoriaService;
@@ -22,23 +29,18 @@ namespace SimpressMVC.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            //var categoria = await _categoriaService.GetCategoriaAsync();
-            var produto = await _produtoService.GetProdutoAsync();
-
-            ViewBag.CategoryId = new SelectList(await _categoriaService.GetCategoriaAsync(), "Id", "Nome");
-
+            var produto = ExecutaApi.ConsultaVerboGet<IEnumerable<ProdutoDTO>>("https://localhost:44320/api/Produto");
+            var categoria = ExecutaApi.ConsultaVerboGet<IEnumerable<CategoriaDTO>>("https://localhost:44320/api/Categoria");
+            ViewBag.CategoryId = new SelectList(categoria, "Id", "Nome");
             return View(produto);
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(ProdutoDTO productDTO)
         {
-            var produto = await _produtoService.GetProdutoAsync();
-
             productDTO.Ativo = true;
             productDTO.Perecivel = true;
-
-            await _produtoService.AddAsync(productDTO);
+            var resposta = ExecutaApi.ConsultaVerboPost<ProdutoDTO>("https://localhost:44320/api/Produto",productDTO);
             return RedirectToAction("Index","Produto");
         }
 
@@ -46,31 +48,25 @@ namespace SimpressMVC.WebUI.Controllers
         public async Task<IActionResult> Edit(int Id)
         {
             if (Id == null) return NotFound();
-            var produtoDTO = await _produtoService.GetByIdAsync(Id);
-
+            var produtoDTO = ExecutaApi.ConsultaVerboGet<ProdutoDTO>("https://localhost:44320/api/Produto/" + Id);
             if (produtoDTO == null) return NotFound();
-
-            var categorias = await _categoriaService.GetCategoriaAsync();
-
-            ViewBag.CategoryId = new SelectList(await _categoriaService.GetCategoriaAsync(), "Id", "Nome");
+            var categorias = ExecutaApi.ConsultaVerboGet<IEnumerable<CategoriaDTO>>("https://localhost:44320/api/Categoria");
+            ViewBag.CategoryId = new SelectList(categorias, "Id", "Nome");
             ViewBag.Id = produtoDTO.CategoriaId;
-            //ViewBag.CategoriaId = new SelectList(categorias, "Id", "Name", produtoDTO.CategoriaId);
-
             return View(produtoDTO);
         }
 
         [HttpPost]
         public async Task<IActionResult> Update(ProdutoDTO productDTO)
         {
-            await _produtoService.UpdateAsync(productDTO);
+            var resposta = ExecutaApi.ConsultaVerboPut<ProdutoDTO>("https://localhost:44320/api/Produto", productDTO);
             return RedirectToAction(nameof(Index));
         }
 
         [HttpGet()]
         public async Task<IActionResult> Delete(int Id)
         {
-            await _produtoService.RemoveAsync(Id);
-
+            var resposta = ExecutaApi.ConsultaVerboDelete<ProdutoDTO>("https://localhost:44320/api/Produto/" + Id);
             return RedirectToAction("Index", "Produto");
         }
     }

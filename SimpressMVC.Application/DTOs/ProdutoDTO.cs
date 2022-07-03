@@ -1,6 +1,7 @@
 ﻿using SimpressMVC.Domain.Entities;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace SimpressMVC.Application.DTOs
 {
@@ -18,6 +19,7 @@ namespace SimpressMVC.Application.DTOs
         [Required(ErrorMessage = "Informe se o produto e Perecivel")]
         public bool Perecivel { get; set; }
 
+        [JsonIgnore]
         public CategoriaProduto Categoria { get; set; }
 
         [DisplayName("Categoria")]
