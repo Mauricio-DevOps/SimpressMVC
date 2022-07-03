@@ -42,13 +42,14 @@ namespace SimpressMVC.WebUI.Controllers
             CreateProdutoValidator validator = new CreateProdutoValidator();
             result = validator.Validate(productDTO);
 
-            if (!result.IsValid)
+            if (result.IsValid)
             {
                 var resposta = ExecutaApi.ConsultaVerboPost<ProdutoResponse>("https://localhost:44320/api/Produto", productDTO);
-                Erro = true;
+                Erro = false;
+                result = null;
             }
-            else { Erro = false; }
-            ViewBag.ReturErro = result.Errors[0];
+            else { Erro = true; }
+            //ViewBag.ReturErro = result.Errors[0];
 
             return RedirectToAction("Index", "Produto");
         }
@@ -69,7 +70,7 @@ namespace SimpressMVC.WebUI.Controllers
         public async Task<IActionResult> Update(ProdutoResponse productDTO)
         {
             var resposta = ExecutaApi.ConsultaVerboPut<ProdutoResponse>("https://localhost:44320/api/Produto", productDTO);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Produto");
         }
 
         [HttpGet()]
